@@ -90,3 +90,26 @@ function MultipleRefsExample() {
 ```
 
 Multiple `useRef`s for Values
+import { useRef } from 'react';
+
+function ValueRefsExample() {
+  const countARef = useRef(0);
+  const countBRef = useRef(0);
+
+  const incrementA = () => {
+    countARef.current += 1;
+    console.log("Count A:", countARef.current);
+  };
+
+  const incrementB = () => {
+    countBRef.current += 1;
+    console.log("Count B:", countBRef.current);
+  };
+
+  return (
+    <div>
+      <button onClick={incrementA}>Increment A</button>
+      <button onClick={incrementB}>Increment B</button>
+    </div>
+  );
+}
