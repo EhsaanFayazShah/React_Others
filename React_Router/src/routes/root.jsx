@@ -5,7 +5,7 @@ export async function action() {
   const contact = await createContact();
   return { contact };
 }
-
+//loader function used to get contacts .
 export async function loader() {
   const contacts = await getContacts();
   return { contacts };

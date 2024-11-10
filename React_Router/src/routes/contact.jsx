@@ -1,12 +1,14 @@
+import { useState } from "react";
 import { Form } from "react-router-dom";
 
 export default function Contact() {
   const contact = {
+    //static object data.
     first: "Ehsaan ",
     last: "Shah",
     avatar: "https://avatars.githubusercontent.com/u/124622398?v=4",
     twitter: "EhsaanShah333",
-    notes: "Some notes",
+    notes: "Backend SWE",
     favorite: true,
   };
 
@@ -22,6 +24,7 @@ export default function Contact() {
         />
       </div>
 
+      {/* Displaying name and other info */}
       <div>
         <h1>
           {contact.first || contact.last ? (
@@ -33,6 +36,7 @@ export default function Contact() {
             <i>No name </i>
           )}{" "}
           <Favorite contact={contact} />
+          {/* rendering the favorite component. */}
         </h1>
 
         {contact.twitter && (
@@ -44,7 +48,9 @@ export default function Contact() {
         )}
 
         {contact.notes && <p>{contact.notes}</p>}
+        {/* conditional rendering above.*/}
 
+        {/* //for edit and delete */}
         <div>
           <Form action="edit">
             <button type="submit">Edit</button>
@@ -56,6 +62,7 @@ export default function Contact() {
             onSubmit={(event) => {
               if (!confirm("please confirm you want to delete this record.")) {
                 event.preventDefault();
+                // without refresing the page form is submitted
               }
             }}
           >
@@ -69,6 +76,7 @@ export default function Contact() {
 
 function Favorite({ contact }) {
   const favorite = contact.favorite;
+
   return (
     <Form method="post">
       <button
