@@ -57,6 +57,8 @@ export default function Root() {
           )}
         </nav>
       </div>
+
+      {/* //children component rendered here */}
       <div id="detail">
         <Outlet />
       </div>

@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Form } from "react-router-dom";
 
 export default function Contact() {
