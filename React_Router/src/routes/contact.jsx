@@ -1,15 +1,21 @@
-import { Form } from "react-router-dom";
+import { getContact } from "../contacts";
+import { Form, useLoaderData } from "react-router-dom";
 
+export async function loader({ params }) {
+  const contact = await getContact(params.contactId);
+  return { contact };
+}
 export default function Contact() {
-  const contact = {
-    //static object data.
-    first: "Ehsaan ",
-    last: "Shah",
-    avatar: "https://avatars.githubusercontent.com/u/124622398?v=4",
-    twitter: "EhsaanShah333",
-    notes: "Backend SWE",
-    favorite: true,
-  };
+  const { contact } = useLoaderData();
+  // contact = {
+  //   //static object data.
+  //   first: "Ehsaan ",
+  //   last: "Shah",
+  //   avatar: "https://avatars.githubusercontent.com/u/124622398?v=4",
+  //   twitter: "EhsaanShah333",
+  //   notes: "Backend SWE",
+  //   favorite: true,
+  // };
 
   return (
     <div id="contact">
