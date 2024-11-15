@@ -1,7 +1,19 @@
-import { Form, useLoaderData } from "react-router-dom";
+import { Form, useLoaderData, redirect, useNavigate } from "react-router-dom";
+import { updateContact } from "../contacts";
 
+export async function action({ request, params }) {
+  const formData = await request.formData();
+  const updates = Object.fromEntries(formData); //will create an Js Object.
+  await updateContact(params.contactId, updates);
+  // const firstName = formData.get("first");
+  // const lastName = formData.get("last");
+  return redirect(`/contacts/${params.contactId}`);
+}
+
+// render the edit form
 export default function EditContact() {
   const { contact } = useLoaderData();
+  const navigate = useNavigate();
 
   //Editing Form page returned
   return (
@@ -48,7 +60,14 @@ export default function EditContact() {
       </label>
       <p>
         <button type="submit">Save</button>
-        <button type="button">Cancel</button>
+        <button
+          type="button"
+          onClick={() => {
+            navigate(-1);
+          }}
+        >
+          Cancel
+        </button>
       </p>
     </Form>
   );
