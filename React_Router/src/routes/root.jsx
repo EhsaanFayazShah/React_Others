@@ -47,7 +47,11 @@ export default function Root() {
               name="q"
               defaultValue={q}
               onChange={(event) => {
-                submit(event.currentTarget.form);
+                const isFirstSearch = q == null;
+                submit(event.currentTarget.form, {
+                  replace: !isFirstSearch,
+                  // We only want to replace search results, not the page before we started searching
+                });
               }}
               className={searching ? "loading" : ""}
               aria-label="Search contacts"
